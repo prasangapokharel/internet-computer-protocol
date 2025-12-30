@@ -1,0 +1,40 @@
+## Git clone and deploy the project in Internet Computer 
+
+## Requirements
+-Install wsl on windows
+-Process https://demergent-labs.github.io/kybra/hello_world.html Guide here
+
+
+## How to Deploy?
+
+1. mkdir ~/protfolio
+2. Create file at src/{foldername}.py  (foldername in here is protfolio)
+3. Add canister sourse at dfx.json like below format 
+`` "portfolio": {
+      "type": "assets",
+      "source": ["portfolio"]
+    } 
+``
+4. Create https://wallet.ic0.app account and load icp min 2ICP 
+
+5. Create Canister on IC Wallet
+ In ic0.app>canister>create canister "Enter Name"> Enter min "2" > Click "Review Cannister Creation"
+
+6. Build Bacend Canister 
+ `dfx start --background`
+ `dfx build protfolio`
+
+7. Get the principal id of canister so link in controller a ic0.app.
+ `dfx identity new protfolio --storage-mode keyring`
+ `dfx identity use protfolio`
+
+
+8. Link Controller to Canister Principal
+ `dfx identity get-principal #copy canister principal id`
+
+9. Deploy Canister
+ `dfx deploy protfolio --network ic`
+
+
+
+
